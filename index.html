@@ -56,6 +56,27 @@
             color: var(--white);
         }
 
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: var(--sub-color);
+        }
+
+
         /* 메인 컨테이너 */
         .container {
             max-width: 1000px;
@@ -311,6 +332,54 @@
         .animal-test-btn:hover {
             background-color: #e65100; /* Darker orange on hover */
         }
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 20px 40px;
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .footer-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--main-color);
+        }
+
+        /* Responsive adjustments for footer */
+        @media (max-width: 768px) {
+            footer .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-nav ul {
+                justify-content: center;
+            }
+        }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8654307421573387"
      crossorigin="anonymous"></script>
@@ -321,12 +390,19 @@
     <!-- 상단 네비게이션바 -->
     <header>
         <a href="#" class="logo">💡 명언의 전당</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">소개</a></li>
+                <li><a href="#">명언 피드</a></li>
+                <li><a href="#">문의</a></li>
+            </ul>
+        </nav>
         <div class="auth-buttons">
             <button onclick="alert('로그인 팝업이 뜹니다.')">로그인</button>
             <button onclick="alert('회원가입 팝업이 뜹니다.')">회원가입</button>
         </div>
     </header>
-
     <div class="container">
         
         <!-- 명언 업로드 영역 -->
@@ -466,5 +542,17 @@
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 나만의 명언록. All rights reserved.</p>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#">소개</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
 </body>
 </html>
