@@ -3,231 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ 이동규 전기기사 합격 기원 ⚡</title>
-    <!-- 구글 폰트 불러오기: 두꺼운 폰트(Black Han Sans)와 기본 폰트(Noto Sans KR) -->
-    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>나만의 명언록 - 마음을 울리는 한 줄</title>
     <style>
-        /* 기본 리셋 및 배경 설정 */
+        /* 색상 변수 설정 */
+        :root {
+            --main-color: #B5D99C; /* 메인 색상 (연두) */
+            --sub-color: #F5F7DC; /* 서브 색상 (연노랑/크림) */
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #FFFFFF;
+        }
+
         body {
+            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle at center, #0f2027, #203a43, #2ca1bd);
-            color: #ffffff;
-            font-family: 'Noto Sans KR', sans-serif;
-            height: 100vh;
+            background-color: var(--sub-color);
+            color: var(--text-dark);
+        }
+
+        /* 헤더 및 네비게이션 */
+        header {
+            background-color: var(--main-color);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .auth-buttons button {
+            background-color: var(--white);
+            color: var(--main-color);
+            border: none;
+            padding: 8px 16px;
+            margin-left: 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .auth-buttons button:hover {
+            background-color: var(--text-dark);
+            color: var(--white);
+        }
+
+        /* 메인 컨테이너 */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* 명언 업로드 섹션 */
+        .upload-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 2px dashed var(--main-color);
+        }
+
+        .upload-section h2 {
+            margin-top: 0;
+            color: #799d5e;
+        }
+
+        .upload-btn {
+            background-color: var(--main-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        /* 이달의 리더보드 */
+        .leaderboard {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .leaderboard h2 {
+            color: #799d5e;
+            border-bottom: 2px solid var(--sub-color);
+            padding-bottom: 10px;
+        }
+
+        .rank-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rank-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .rank-medal {
+            font-weight: bold;
+            color: var(--main-color);
+            font-size: 18px;
+            margin-right: 15px;
+        }
+
+        /* 명언 피드 (카드 그리드) */
+        .feed-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .quote-card {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .quote-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .quote-author {
+            color: var(--text-light);
+            font-size: 14px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .like-btn {
+            background-color: var(--sub-color);
+            border: 1px solid var(--main-color);
+            color: #ff4757;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+
+        .like-btn:hover {
+            background-color: var(--main-color);
+            color: var(--white);
+        }
+
+        /* 멤버십 요금제 */
+        .pricing-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .pricing-grid {
             display: flex;
             justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
-        /* ⚡ 번개 번쩍이는 배경 효과 */
-        .lightning-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: white;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 1;
-            animation: thunder 4s infinite;
+        .price-card {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            border: 2px solid var(--sub-color);
+            border-radius: 10px;
+            background-color: #fafafa;
         }
 
-        /* 중앙 메인 박스 (유리 질감 + 네온) */
-        .neon-box {
-            position: relative;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.6);
-            border: 2px solid #00e5ff;
-            border-radius: 30px;
-            padding: 50px;
-            text-align: center;
-            box-shadow: 0 0 20px #00e5ff, inset 0 0 30px #00e5ff;
-            backdrop-filter: blur(10px);
-            animation: float 3s ease-in-out infinite;
-            max-width: 90%;
-            width: 650px;
+        .price-card.premium {
+            border-color: var(--main-color);
+            background-color: var(--sub-color);
         }
 
-        /* 메인 타이틀 */
-        .title {
-            font-family: 'Black Han Sans', sans-serif;
-            font-size: 5rem;
-            margin: 0;
-            color: #fff;
-            text-shadow: 
-                0 0 10px #ffe600, 
-                0 0 20px #ffe600, 
-                0 0 40px #ff00de, 
-                0 0 80px #ff00de;
-            animation: neon-pulse 1.5s infinite alternate;
-            letter-spacing: 2px;
+        .price-tier {
+            font-size: 18px;
+            font-weight: bold;
+            color: #799d5e;
+            margin-bottom: 10px;
         }
 
-        /* 서브 타이틀 (아파트 & 나이) */
-        .subtitle {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #00e5ff;
-            margin-top: 15px;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px #00e5ff;
-            line-height: 1.5;
-        }
-
-        /* 강조 텍스트 */
-        .highlight-name {
-            font-size: 2.5rem;
-            color: #ff0055;
-            background: linear-gradient(90deg, #ff8a00, #e52e71, #ff0055);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
-            display: inline-block;
-            margin: 10px 0;
-            animation: pop 1s infinite alternate;
-        }
-
-        .highlight-exam {
-            font-family: 'Black Han Sans', sans-serif;
-            font-size: 4rem;
-            color: #ffe600;
-            text-shadow: 0 0 20px #ffe600, 0 0 50px #ff8a00;
-            margin: 15px 0;
-            display: inline-block;
-            transform: skewX(-10deg);
-        }
-
-        /* 정보 텍스트 */
-        .info-text {
-            font-size: 1.4rem;
-            color: #e0e0e0;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            font-weight: 700;
-        }
-
-        /* 화려한 버튼 */
-        .power-btn {
-            display: inline-block;
-            padding: 20px 50px;
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: #000;
-            background: linear-gradient(45deg, #00e5ff, #ffe600);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 20px #00e5ff, 0 0 40px #ffe600;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .power-btn:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 30px #fff, 0 0 60px #ffe600;
-            color: #fff;
-            background: linear-gradient(45deg, #ff0055, #ffe600);
-        }
-
-        /* ⚡ 파티클 (배경에 떠다니는 전기 기호) */
-        .particles {
-            position: absolute;
-            font-size: 2.5rem;
-            opacity: 0.5;
-            animation: rise 5s infinite ease-in;
-            z-index: 2;
-        }
-
-        /* 애니메이션 키프레임 모음 */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        @keyframes neon-pulse {
-            0% { text-shadow: 0 0 10px #ffe600, 0 0 20px #ffe600, 0 0 30px #ff00de; }
-            100% { text-shadow: 0 0 20px #ffe600, 0 0 40px #ffe600, 0 0 80px #ff00de, 0 0 100px #ff00de; }
-        }
-
-        @keyframes thunder {
-            0%, 95% { opacity: 0; }
-            96% { opacity: 0.8; }
-            97% { opacity: 0; }
-            98% { opacity: 0.5; }
-            100% { opacity: 0; }
-        }
-
-        @keyframes pop {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
-        }
-
-        @keyframes rise {
-            0% { bottom: -10%; transform: translateX(0) rotate(0deg); opacity: 0; }
-            50% { opacity: 1; }
-            100% { bottom: 110%; transform: translateX(100px) rotate(360deg); opacity: 0; }
+        .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text-dark);
         }
     </style>
 </head>
 <body>
 
-    <!-- 번개 번쩍이는 효과 -->
-    <div class="lightning-bg"></div>
-
-    <!-- 배경에 떠다니는 전기 에너지 파티클 생성 -->
-    <div class="particles" style="left: 10%; animation-duration: 4s; animation-delay: 0s;">⚡</div>
-    <div class="particles" style="left: 30%; animation-duration: 6s; animation-delay: 1s;">💡</div>
-    <div class="particles" style="left: 50%; animation-duration: 5s; animation-delay: 2s;">⚡</div>
-    <div class="particles" style="left: 70%; animation-duration: 7s; animation-delay: 0.5s;">🔥</div>
-    <div class="particles" style="left: 90%; animation-duration: 4.5s; animation-delay: 1.5s;">⚡</div>
-
-    <!-- 메인 콘텐츠 박스 -->
-    <div class="neon-box">
-        <h1 class="title">합격 기원!</h1>
-        <div class="subtitle">
-            광주 풍암동 한국아델리움의 자랑!<br>
-            열정의 아이콘, <span class="highlight-name">36세 이동규</span>
+    <!-- 상단 네비게이션바 -->
+    <header>
+        <a href="#" class="logo">💡 명언의 전당</a>
+        <div class="auth-buttons">
+            <button onclick="alert('로그인 팝업이 뜹니다.')">로그인</button>
+            <button onclick="alert('회원가입 팝업이 뜹니다.')">회원가입</button>
         </div>
+    </header>
+
+    <div class="container">
         
-        <div class="info-text">
-            220V를 넘어 22,900V의 강력한 에너지로!<br>
-            <span class="highlight-exam">전기기사 시험</span><br>
-            단번에 합격할 것을 우주 끝까지 응원합니다!
-        </div>
+        <!-- 명언 업로드 영역 -->
+        <section class="upload-section">
+            <h2>당신의 마음을 움직인 한 줄을 공유해주세요</h2>
+            <p style="color: var(--text-light); margin-bottom: 20px;">
+                회원가입 후 명언을 업로드하고, 많은 좋아요를 받으면 상금을 드립니다!
+            </p>
+            <button class="upload-btn" onclick="alert('로그인이 필요한 서비스입니다.')">명언 작성하기 ✍️</button>
+        </section>
 
-        <!-- 클릭하면 자바스크립트 알림창이 뜨는 버튼 -->
-        <a href="#" class="power-btn" onclick="triggerElectricShock(event)">⚡ 합격 에너지 전송 ⚡</a>
+        <!-- 이달의 리더보드 -->
+        <section class="leaderboard">
+            <h2>🏆 이달의 명언 리더보드 (상금 지급)</h2>
+            <p style="font-size: 14px; color: var(--text-light);">한 달에 한 번, 가장 많은 좋아요를 받은 분들께 수익을 분배해 드립니다.</p>
+            <ul class="rank-list">
+                <li class="rank-item">
+                    <div>
+                        <span class="rank-medal">1위 🥇</span>
+                        <span>"실패는 잊어라. 하지만 그것이 준 교훈은 절대 잊지 마라." - 유저A님</span>
+                    </div>
+                    <strong>❤️ 1,245</strong>
+                </li>
+                <li class="rank-item">
+                    <div>
+                        <span class="rank-medal">2위 🥈</span>
+                        <span>"우리가 이룬 것만큼, 이루지 못한 것도 자랑스럽다." - 명언러버님</span>
+                    </div>
+                    <strong>❤️ 982</strong>
+                </li>
+                <li class="rank-item">
+                    <div>
+                        <span class="rank-medal">3위 🥉</span>
+                        <span>"스스로 만들어낸 빛이 가장 멀리 간다." - 창작자B님</span>
+                    </div>
+                    <strong>❤️ 750</strong>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 최신 명언 피드 -->
+        <h2 style="color: #799d5e; padding-left: 10px;">✨ 오늘의 명언 피드</h2>
+        <section class="feed-grid">
+            <!-- 명언 카드 1 -->
+            <div class="quote-card">
+                <div class="quote-text">"가장 어두운 밤도 언젠가는 끝나고 해는 떠오른다."</div>
+                <div class="quote-author">- 빈센트 반 고흐 (업로드: 햇살님)</div>
+                <button class="like-btn" onclick="alert('좋아요를 눌렀습니다!')">❤️ 좋아요 42</button>
+            </div>
+            <!-- 명언 카드 2 -->
+            <div class="quote-card">
+                <div class="quote-text">"완벽함이란 더 이상 더할 것이 없을 때가 아니라, 뺄 것이 없을 때 완성된다."</div>
+                <div class="quote-author">- 생텍쥐페리 (업로드: 미니멀님)</div>
+                <button class="like-btn" onclick="alert('좋아요를 눌렀습니다!')">❤️ 좋아요 128</button>
+            </div>
+            <!-- 명언 카드 3 -->
+            <div class="quote-card">
+                <div class="quote-text">"오늘 나의 노력이 내일의 기적이 된다."</div>
+                <div class="quote-author">- 본인 창작 (업로드: 기적메이커님)</div>
+                <button class="like-btn" onclick="alert('좋아요를 눌렀습니다!')">❤️ 좋아요 356</button>
+            </div>
+        </section>
+
+        <!-- 명언 작성 멤버십 안내 -->
+        <section class="pricing-section">
+            <h2 style="color: #799d5e;">📝 명언 업로드 멤버십 안내</h2>
+            <p style="color: var(--text-light);">더 많은 명언을 공유하고 리더보드 상금에 도전하세요!</p>
+            
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="price-tier">🌱 씨앗 (무료)</div>
+                    <div class="price-amount">0원 / 월</div>
+                    <p style="color: var(--text-light); font-size: 14px;">하루 1개 작성 가능</p>
+                </div>
+                <div class="price-card">
+                    <div class="price-tier">🌿 새싹 플랜</div>
+                    <div class="price-amount">1,000원 / 월</div>
+                    <p style="color: var(--text-light); font-size: 14px;">하루 2개 ~ 5개 작성</p>
+                </div>
+                <div class="price-card">
+                    <div class="price-tier">🌳 나무 플랜</div>
+                    <div class="price-amount">2,000원 / 월</div>
+                    <p style="color: var(--text-light); font-size: 14px;">하루 5개 ~ 9개 작성</p>
+                </div>
+                <div class="price-card premium">
+                    <div class="price-tier">👑 숲 플랜</div>
+                    <div class="price-amount">5,000원 / 월</div>
+                    <p style="color: var(--text-light); font-size: 14px;">하루 10개 이상 무제한</p>
+                </div>
+            </div>
+        </section>
+
     </div>
 
-    <!-- 버튼 클릭 시 화면 흔들림 효과용 자바스크립트 -->
-    <script>
-        function triggerElectricShock(e) {
-            e.preventDefault();
-            // 화면 흔들림 효과 (Body 태그에 애니메이션 적용)
-            document.body.style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both';
-            
-            setTimeout(() => {
-                alert("찌릿찌릿! ⚡ 강력한 합격 에너지가 이동규 님에게 1000% 충전되었습니다! 전기기사 무조건 합격입니다!");
-                document.body.style.animation = ''; // 애니메이션 초기화
-            }, 100);
-        }
-
-        // 동적으로 CSS에 흔들림 애니메이션(Keyframes) 추가
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes shake {
-                10%, 90% { transform: translate3d(-5px, 0, 0); }
-                20%, 80% { transform: translate3d(5px, 0, 0); }
-                30%, 50%, 70% { transform: translate3d(-10px, 0, 0); }
-                40%, 60% { transform: translate3d(10px, 0, 0); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
 </body>
 </html>
