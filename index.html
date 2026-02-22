@@ -276,6 +276,41 @@
         .contact-form button[type="submit"]:hover {
             background-color: #799d5e;
         }
+
+        /* 동물상 테스트 링크 박스 스타일 */
+        .animal-test-link-section {
+            background-color: #ffe0b2; /* Warm color */
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+            border: 2px dashed #ff9800; /* Orange border */
+        }
+
+        .animal-test-link-section h2 {
+            margin-top: 0;
+            color: #e65100; /* Darker orange */
+        }
+
+        .animal-test-btn {
+            background-color: #ff9800; /* Orange */
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none; /* Remove underline for anchor */
+            display: inline-block; /* For padding and alignment */
+            margin-top: 15px;
+        }
+
+        .animal-test-btn:hover {
+            background-color: #e65100; /* Darker orange on hover */
+        }
     </style>
 </head>
 <body>
@@ -396,6 +431,13 @@
                 
                 <button type="submit">문의하기</button>
             </form>
+        </section>
+
+        <!-- 동물상 테스트 링크 섹션 -->
+        <section class="animal-test-link-section">
+            <h2>🐶🐱 동물상 테스트 해보기!</h2>
+            <p style="color: #e65100;">지금 바로 당신의 동물상을 확인해보세요!</p>
+            <a href="animal_test.html" class="animal-test-btn">테스트 시작하기 🚀</a>
         </section>
 
     </div>
