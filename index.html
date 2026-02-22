@@ -219,6 +219,63 @@
             margin-bottom: 15px;
             color: var(--text-dark);
         }
+
+        /* 제휴 문의 폼 스타일 */
+        .contact-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+        }
+
+        .contact-section h2 {
+            color: #799d5e;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid var(--sub-color);
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button[type="submit"] {
+            background-color: var(--main-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .contact-form button[type="submit"]:hover {
+            background-color: #799d5e;
+        }
     </style>
 </head>
 <body>
@@ -322,6 +379,23 @@
                     <p style="color: var(--text-light); font-size: 14px;">하루 10개 이상 무제한</p>
                 </div>
             </div>
+        </section>
+
+        <!-- 제휴 문의 섹션 -->
+        <section class="contact-section">
+            <h2>🤝 제휴 문의</h2>
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_FORM_ID" method="POST" class="contact-form">
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">이메일:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">문의 내용:</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <button type="submit">문의하기</button>
+            </form>
         </section>
 
     </div>
