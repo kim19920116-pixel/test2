@@ -1,22 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
-    <link rel="stylesheet" href="style.css">
+    <title>⚡ 이동규 전기기사 합격 기원 ⚡</title>
+    <!-- 구글 폰트 불러오기: 두꺼운 폰트(Black Han Sans)와 기본 폰트(Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 기본 리셋 및 배경 설정 */
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #0f2027, #203a43, #2ca1bd);
+            color: #ffffff;
+            font-family: 'Noto Sans KR', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ⚡ 번개 번쩍이는 배경 효과 */
+        .lightning-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: thunder 4s infinite;
+        }
+
+        /* 중앙 메인 박스 (유리 질감 + 네온) */
+        .neon-box {
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #00e5ff;
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 0 20px #00e5ff, inset 0 0 30px #00e5ff;
+            backdrop-filter: blur(10px);
+            animation: float 3s ease-in-out infinite;
+            max-width: 90%;
+            width: 650px;
+        }
+
+        /* 메인 타이틀 */
+        .title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 5rem;
+            margin: 0;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #ffe600, 
+                0 0 20px #ffe600, 
+                0 0 40px #ff00de, 
+                0 0 80px #ff00de;
+            animation: neon-pulse 1.5s infinite alternate;
+            letter-spacing: 2px;
+        }
+
+        /* 서브 타이틀 (아파트 & 나이) */
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #00e5ff;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #00e5ff;
+            line-height: 1.5;
+        }
+
+        /* 강조 텍스트 */
+        .highlight-name {
+            font-size: 2.5rem;
+            color: #ff0055;
+            background: linear-gradient(90deg, #ff8a00, #e52e71, #ff0055);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+            display: inline-block;
+            margin: 10px 0;
+            animation: pop 1s infinite alternate;
+        }
+
+        .highlight-exam {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 4rem;
+            color: #ffe600;
+            text-shadow: 0 0 20px #ffe600, 0 0 50px #ff8a00;
+            margin: 15px 0;
+            display: inline-block;
+            transform: skewX(-10deg);
+        }
+
+        /* 정보 텍스트 */
+        .info-text {
+            font-size: 1.4rem;
+            color: #e0e0e0;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        /* 화려한 버튼 */
+        .power-btn {
+            display: inline-block;
+            padding: 20px 50px;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #000;
+            background: linear-gradient(45deg, #00e5ff, #ffe600);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px #00e5ff, 0 0 40px #ffe600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .power-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 30px #fff, 0 0 60px #ffe600;
+            color: #fff;
+            background: linear-gradient(45deg, #ff0055, #ffe600);
+        }
+
+        /* ⚡ 파티클 (배경에 떠다니는 전기 기호) */
+        .particles {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.5;
+            animation: rise 5s infinite ease-in;
+            z-index: 2;
+        }
+
+        /* 애니메이션 키프레임 모음 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes neon-pulse {
+            0% { text-shadow: 0 0 10px #ffe600, 0 0 20px #ffe600, 0 0 30px #ff00de; }
+            100% { text-shadow: 0 0 20px #ffe600, 0 0 40px #ffe600, 0 0 80px #ff00de, 0 0 100px #ff00de; }
+        }
+
+        @keyframes thunder {
+            0%, 95% { opacity: 0; }
+            96% { opacity: 0.8; }
+            97% { opacity: 0; }
+            98% { opacity: 0.5; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        @keyframes rise {
+            0% { bottom: -10%; transform: translateX(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { bottom: 110%; transform: translateX(100px) rotate(360deg); opacity: 0; }
+        }
+    </style>
 </head>
 <body>
-    <div class="theme-switcher">
-        <button id="light-theme-btn">Light</button>
-        <button id="dark-theme-btn">Dark</button>
-        <button id="grayscale-theme-btn">Grayscale</button>
+
+    <!-- 번개 번쩍이는 효과 -->
+    <div class="lightning-bg"></div>
+
+    <!-- 배경에 떠다니는 전기 에너지 파티클 생성 -->
+    <div class="particles" style="left: 10%; animation-duration: 4s; animation-delay: 0s;">⚡</div>
+    <div class="particles" style="left: 30%; animation-duration: 6s; animation-delay: 1s;">💡</div>
+    <div class="particles" style="left: 50%; animation-duration: 5s; animation-delay: 2s;">⚡</div>
+    <div class="particles" style="left: 70%; animation-duration: 7s; animation-delay: 0.5s;">🔥</div>
+    <div class="particles" style="left: 90%; animation-duration: 4.5s; animation-delay: 1.5s;">⚡</div>
+
+    <!-- 메인 콘텐츠 박스 -->
+    <div class="neon-box">
+        <h1 class="title">합격 기원!</h1>
+        <div class="subtitle">
+            광주 풍암동 한국아델리움의 자랑!<br>
+            열정의 아이콘, <span class="highlight-name">36세 이동규</span>
+        </div>
+        
+        <div class="info-text">
+            220V를 넘어 22,900V의 강력한 에너지로!<br>
+            <span class="highlight-exam">전기기사 시험</span><br>
+            단번에 합격할 것을 우주 끝까지 응원합니다!
+        </div>
+
+        <!-- 클릭하면 자바스크립트 알림창이 뜨는 버튼 -->
+        <a href="#" class="power-btn" onclick="triggerElectricShock(event)">⚡ 합격 에너지 전송 ⚡</a>
     </div>
-    <div class="container">
-        <h1>Lotto Number Generator</h1>
-        <div id="numbers-container" class="numbers-container"></div>
-        <button id="generate-btn" class="generate-btn">Generate Numbers</button>
-    </div>
-    <script src="main.js"></script>
+
+    <!-- 버튼 클릭 시 화면 흔들림 효과용 자바스크립트 -->
+    <script>
+        function triggerElectricShock(e) {
+            e.preventDefault();
+            // 화면 흔들림 효과 (Body 태그에 애니메이션 적용)
+            document.body.style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both';
+            
+            setTimeout(() => {
+                alert("찌릿찌릿! ⚡ 강력한 합격 에너지가 이동규 님에게 1000% 충전되었습니다! 전기기사 무조건 합격입니다!");
+                document.body.style.animation = ''; // 애니메이션 초기화
+            }, 100);
+        }
+
+        // 동적으로 CSS에 흔들림 애니메이션(Keyframes) 추가
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes shake {
+                10%, 90% { transform: translate3d(-5px, 0, 0); }
+                20%, 80% { transform: translate3d(5px, 0, 0); }
+                30%, 50%, 70% { transform: translate3d(-10px, 0, 0); }
+                40%, 60% { transform: translate3d(10px, 0, 0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
