@@ -1,37 +1,45 @@
 const generateBtn = document.getElementById('generate-btn');
 const numbersContainer = document.getElementById('numbers-container');
-const themeToggle = document.getElementById('theme-toggle');
+
+// New theme buttons
+const lightThemeBtn = document.getElementById('light-theme-btn');
+const darkThemeBtn = document.getElementById('dark-theme-btn');
+const grayscaleThemeBtn = document.getElementById('grayscale-theme-btn');
 
 // Function to set the theme
-function setTheme(isDark) {
-    if (isDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggle.checked = true;
-    } else {
-        document.documentElement.removeAttribute('data-theme');
-        themeToggle.checked = false;
+function setTheme(themeName) {
+    document.documentElement.setAttribute('data-theme', themeName);
+    localStorage.setItem('theme', themeName);
+
+    // Update active class on buttons
+    lightThemeBtn.classList.remove('active');
+    darkThemeBtn.classList.remove('active');
+    grayscaleThemeBtn.classList.remove('active');
+
+    if (themeName === 'light') {
+        lightThemeBtn.classList.add('active');
+    } else if (themeName === 'dark') {
+        darkThemeBtn.classList.add('active');
+    } else if (themeName === 'grayscale') {
+        grayscaleThemeBtn.classList.add('active');
     }
 }
 
-// Event listener for the theme toggle
-themeToggle.addEventListener('change', () => {
-    const isDark = themeToggle.checked;
-    setTheme(isDark);
-    localStorage.setItem('darkTheme', isDark);
-});
+// Event listeners for the theme buttons
+lightThemeBtn.addEventListener('click', () => setTheme('light'));
+darkThemeBtn.addEventListener('click', () => setTheme('dark'));
+grayscaleThemeBtn.addEventListener('click', () => setTheme('grayscale'));
 
 // Check for saved theme in localStorage on page load
 document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('darkTheme');
-    // If there is a saved theme, use it. Otherwise, check system preference.
-    if (savedTheme !== null) {
-        setTheme(savedTheme === 'true');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
     } else {
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setTheme(prefersDark);
+        // Default to light theme if no preference is saved
+        setTheme('light');
     }
 });
-
 
 generateBtn.addEventListener('click', () => {
     generateLottoNumbers();
