@@ -3,556 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나만의 명언록 - 마음을 울리는 한 줄</title>
-    <style>
-        /* 색상 변수 설정 */
-        :root {
-            --main-color: #B5D99C; /* 메인 색상 (연두) */
-            --sub-color: #F5F7DC; /* 서브 색상 (연노랑/크림) */
-            --text-dark: #333333;
-            --text-light: #666666;
-            --white: #FFFFFF;
-        }
+    <title>로또 번호 생성기 - 재미로 보는 오늘의 번호</title>
+    <meta name="description" content="단순 참고용 로또 번호 생성기입니다. 실제 당첨을 보장하지 않으며, 책임 있는 복권 구매를 권장합니다.">
 
-        body {
-            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--sub-color);
-            color: var(--text-dark);
-        }
+    <!-- 여기: 애드센스에서 준 전역 코드(예: adsbygoogle.js 스크립트)를 붙여 넣는 자리 -->
+    <!-- 예시)
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxx"
+            crossorigin="anonymous"></script>
+    -->
 
-        /* 헤더 및 네비게이션 */
-        header {
-            background-color: var(--main-color);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        .auth-buttons button {
-            background-color: var(--white);
-            color: var(--main-color);
-            border: none;
-            padding: 8px 16px;
-            margin-left: 10px;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .auth-buttons button:hover {
-            background-color: var(--text-dark);
-            color: var(--white);
-        }
-
-        .main-nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-
-        .main-nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-
-        .main-nav a:hover {
-            color: var(--sub-color);
-        }
-
-
-        /* 메인 컨테이너 */
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        /* 명언 업로드 섹션 */
-        .upload-section {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            border: 2px dashed var(--main-color);
-        }
-
-        .upload-section h2 {
-            margin-top: 0;
-            color: #799d5e;
-        }
-
-        .upload-btn {
-            background-color: var(--main-color);
-            color: var(--white);
-            border: none;
-            padding: 12px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-        }
-
-        /* 이달의 리더보드 */
-        .leaderboard {
-            background-color: var(--white);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .leaderboard h2 {
-            color: #799d5e;
-            border-bottom: 2px solid var(--sub-color);
-            padding-bottom: 10px;
-        }
-
-        .rank-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .rank-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .rank-medal {
-            font-weight: bold;
-            color: var(--main-color);
-            font-size: 18px;
-            margin-right: 15px;
-        }
-
-        /* 명언 피드 (카드 그리드) */
-        .feed-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .quote-card {
-            background-color: var(--white);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .quote-text {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .quote-author {
-            color: var(--text-light);
-            font-size: 14px;
-            text-align: right;
-            margin-bottom: 20px;
-        }
-
-        .like-btn {
-            background-color: var(--sub-color);
-            border: 1px solid var(--main-color);
-            color: #ff4757;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: 0.2s;
-        }
-
-        .like-btn:hover {
-            background-color: var(--main-color);
-            color: var(--white);
-        }
-
-        /* 멤버십 요금제 */
-        .pricing-section {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 50px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-
-        .pricing-grid {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .price-card {
-            flex: 1;
-            min-width: 200px;
-            padding: 20px;
-            border: 2px solid var(--sub-color);
-            border-radius: 10px;
-            background-color: #fafafa;
-        }
-
-        .price-card.premium {
-            border-color: var(--main-color);
-            background-color: var(--sub-color);
-        }
-
-        .price-tier {
-            font-size: 18px;
-            font-weight: bold;
-            color: #799d5e;
-            margin-bottom: 10px;
-        }
-
-        .price-amount {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        /* 제휴 문의 폼 스타일 */
-        .contact-section {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
-        }
-
-        .contact-section h2 {
-            color: #799d5e;
-            margin-top: 0;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: var(--text-dark);
-        }
-
-        .contact-form input[type="text"],
-        .contact-form input[type="email"],
-        .contact-form textarea {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid var(--sub-color);
-            border-radius: 8px;
-            font-size: 16px;
-            font-family: 'Pretendard', sans-serif;
-        }
-
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .contact-form button[type="submit"] {
-            background-color: var(--main-color);
-            color: var(--white);
-            border: none;
-            padding: 12px 25px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: 0.3s;
-            width: 100%;
-        }
-
-        .contact-form button[type="submit"]:hover {
-            background-color: #799d5e;
-        }
-
-        /* 동물상 테스트 링크 박스 스타일 */
-        .animal-test-link-section {
-            background-color: #ffe0b2; /* Warm color */
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
-            border: 2px dashed #ff9800; /* Orange border */
-        }
-
-        .animal-test-link-section h2 {
-            margin-top: 0;
-            color: #e65100; /* Darker orange */
-        }
-
-        .animal-test-btn {
-            background-color: #ff9800; /* Orange */
-            color: var(--white);
-            border: none;
-            padding: 12px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none; /* Remove underline for anchor */
-            display: inline-block; /* For padding and alignment */
-            margin-top: 15px;
-        }
-
-        .animal-test-btn:hover {
-            background-color: #e65100; /* Darker orange on hover */
-        }
-        footer {
-            background-color: var(--text-dark);
-            color: var(--white);
-            padding: 20px 40px;
-            text-align: center;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-            margin-top: 40px;
-        }
-
-        footer .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-        }
-
-        .footer-nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 15px;
-        }
-
-        .footer-nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-nav a:hover {
-            color: var(--main-color);
-        }
-
-        /* Responsive adjustments for footer */
-        @media (max-width: 768px) {
-            footer .container {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .footer-nav ul {
-                justify-content: center;
-            }
-        }
-    </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8654307421573387"
-     crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-8654307421573387">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- 상단 네비게이션바 -->
-    <header>
-        <a href="#" class="logo">💡 명언의 전당</a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#">홈</a></li>
-                <li><a href="#">소개</a></li>
-                <li><a href="#">명언 피드</a></li>
-                <li><a href="#">문의</a></li>
-            </ul>
-        </nav>
-        <div class="auth-buttons">
-            <button onclick="alert('로그인 팝업이 뜹니다.')">로그인</button>
-            <button onclick="alert('회원가입 팝업이 뜹니다.')">회원가입</button>
-        </div>
-    </header>
     <div class="container">
-        
-        <!-- 명언 업로드 영역 -->
-        <section class="upload-section">
-            <h2>당신의 마음을 움직인 한 줄을 공유해주세요</h2>
-            <p style="color: var(--text-light); margin-bottom: 20px;">
-                회원가입 후 명언을 업로드하고, 많은 좋아요를 받으면 상금을 드립니다!
+        <header>
+            <h1>로또 번호 생성기</h1>
+            <p class="subtitle">
+                이 페이지는 <strong>재미와 연습용</strong>으로 번호를 뽑아보는 도구입니다.  
+                실제 당첨을 보장하지 않으며, 과도한 복권 구매는 추천하지 않습니다.
             </p>
-            <button class="upload-btn" onclick="alert('로그인이 필요한 서비스입니다.')">명언 작성하기 ✍️</button>
+        </header>
+
+        <!-- 번호 생성 도구 영역 -->
+        <section class="tool-section">
+            <h2>오늘의 추천 번호 뽑기</h2>
+            <p>
+                아래 버튼을 누르면 1~45 사이의 숫자 6개가 무작위로 생성됩니다.  
+                매번 다른 조합을 확인하면서, 단순히 ‘확률과 운’을 체험하는 용도로 활용해 주세요.
+            </p>
+
+            <div id="numbers-container" class="numbers-container"></div>
+            <button id="generate-btn" class="generate-btn">번호 생성하기</button>
         </section>
 
-        <!-- 이달의 리더보드 -->
-        <section class="leaderboard">
-            <h2>🏆 이달의 명언 리더보드 (상금 지급)</h2>
-            <p style="font-size: 14px; color: var(--text-light);">한 달에 한 번, 가장 많은 좋아요를 받은 분들께 수익을 분배해 드립니다.</p>
-            <ul class="rank-list">
-                <li class="rank-item">
-                    <div>
-                        <span class="rank-medal">1위 🥇</span>
-                        <span>"실패는 잊어라. 하지만 그것이 준 교훈은 절대 잊지 마라." - 유저A님</span>
-                    </div>
-                    <strong>❤️ 1,245</strong>
-                </li>
-                <li class="rank-item">
-                    <div>
-                        <span class="rank-medal">2위 🥈</span>
-                        <span>"우리가 이룬 것만큼, 이루지 못한 것도 자랑스럽다." - 명언러버님</span>
-                    </div>
-                    <strong>❤️ 982</strong>
-                </li>
-                <li class="rank-item">
-                    <div>
-                        <span class="rank-medal">3위 🥉</span>
-                        <span>"스스로 만들어낸 빛이 가장 멀리 간다." - 창작자B님</span>
-                    </div>
-                    <strong>❤️ 750</strong>
-                </li>
+        <!-- (광고용) 콘텐츠 사이 애드센스 광고 자리 -->
+        <!-- 실제 애드센스 광고 유닛 코드는 이 div 안에 넣으세요 -->
+        <!--
+        <section class="ad-section">
+            <div class="ad-wrapper">
+                여기에 애드센스 광고 유닛 코드 붙여넣기
+            </div>
+        </section>
+        -->
+
+        <!-- 설명 콘텐츠 영역: 애드센스가 '가치 있는 콘텐츠'로 볼 수 있게 글을 충분히 작성 -->
+        <section class="content-section">
+            <h2>로또 번호 생성기를 만든 이유</h2>
+            <p>
+                많은 사람들이 주말마다 재미로 로또를 구입하지만,
+                막상 번호를 고를 때는 늘 비슷한 패턴을 반복하곤 합니다.
+                이 페이지는 그런 분들을 위해 <strong>가볍게 번호를 섞어 보는 도구</strong>를 제공하기 위해 만들었습니다.
+            </p>
+            <p>
+                단순히 번호를 뽑는 것에서 끝나는 것이 아니라,
+                <strong>확률의 개념</strong>을 함께 떠올려 보고
+                ‘당첨은 매우 낮은 확률의 이벤트’라는 사실을 다시 한 번 상기하는 것이 이 사이트의 핵심 목적입니다.
+            </p>
+
+            <h2>로또 당첨 확률은 얼마나 낮을까?</h2>
+            <p>
+                한국 로또처럼 1~45번 중에서 6개 번호를 뽑는 게임의 경우,
+                1등 조합은 전체 경우의 수 중 딱 1개뿐입니다.
+                즉, 아무 번호나 1줄을 골랐을 때 1등에 당첨될 확률은
+                <strong>상상 이상으로 낮다</strong>는 뜻입니다.
+            </p>
+            <p>
+                이런 이유로 전문가들은 복권을
+                <strong>투자나 재테크 수단이 아니라, 소액으로 즐기는 여가/오락</strong> 정도로만 받아들이라고 조언합니다.
+                이 사이트 역시 같은 관점에서, 단순히 번호를 섞어 보며
+                작은 재미를 느끼는 용도로만 사용되길 바랍니다.
+            </p>
+
+            <h2>책임 있는 복권 이용을 위한 안내</h2>
+            <ul>
+                <li>생활비나 빚을 갚기 위한 수단으로 복권을 구매하지 마세요.</li>
+                <li>매주 정해 놓은 소액 범위 안에서만 즐기는 것을 권장합니다.</li>
+                <li>로또 번호 생성기가 <strong>당첨 확률을 올려 주지는 않는다</strong>는 사실을 꼭 기억해 주세요.</li>
             </ul>
+
+            <p>
+                이 페이지의 내용은 특정 복권 판매를 권유하거나 장려하기 위한 것이 아니며,
+                <strong>확률과 책임 있는 소비에 대한 인식</strong>을 함께 나누기 위한 정보 제공용입니다.
+            </p>
         </section>
 
-        <!-- 최신 명언 피드 -->
-        <h2 style="color: #799d5e; padding-left: 10px;">✨ 오늘의 명언 피드</h2>
-        <section class="feed-grid">
-            <!-- 명언 카드 1 -->
-            <div class="quote-card">
-                <div class="quote-text">"가장 어두운 밤도 언젠가는 끝나고 해는 떠오른다."</div>
-                <div class="quote-author">- 빈센트 반 고흐 (업로드: 햇살님)</div>
-                <button class="like-btn" onclick="alert('좋아요를 눌렀습니다!')">❤️ 좋아요 42</button>
-            </div>
-            <!-- 명언 카드 2 -->
-            <div class="quote-card">
-                <div class="quote-text">"완벽함이란 더 이상 더할 것이 없을 때가 아니라, 뺄 것이 없을 때 완성된다."</div>
-                <div class="quote-author">- 생텍쥐페리 (업로드: 미니멀님)</div>
-                <button class="like-btn" onclick="alert('좋아요를 눌렀습니다!')">❤️ 좋아요 128</button>
-            </div>
-            <!-- 명언 카드 3 -->
-            <div class="quote-card">
-                <div class="quote-text">"오늘 나의 노력이 내일의 기적이 된다."</div>
-                <div class="quote-author">- 본인 창작 (업로드: 기적메이커님)</div>
-                <button class="like-btn" onclick="alert('좋아요를 눌렀습니다!')">❤️ 좋아요 356</button>
-            </div>
-        </section>
-
-        <!-- 명언 작성 멤버십 안내 -->
-        <section class="pricing-section">
-            <h2 style="color: #799d5e;">📝 명언 업로드 멤버십 안내</h2>
-            <p style="color: var(--text-light);">더 많은 명언을 공유하고 리더보드 상금에 도전하세요!</p>
-            
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div class="price-tier">🌱 씨앗 (무료)</div>
-                    <div class="price-amount">0원 / 월</div>
-                    <p style="color: var(--text-light); font-size: 14px;">하루 1개 작성 가능</p>
-                </div>
-                <div class="price-card">
-                    <div class="price-tier">🌿 새싹 플랜</div>
-                    <div class="price-amount">1,000원 / 월</div>
-                    <p style="color: var(--text-light); font-size: 14px;">하루 2개 ~ 5개 작성</p>
-                </div>
-                <div class="price-card">
-                    <div class="price-tier">🌳 나무 플랜</div>
-                    <div class="price-amount">2,000원 / 월</div>
-                    <p style="color: var(--text-light); font-size: 14px;">하루 5개 ~ 9개 작성</p>
-                </div>
-                <div class="price-card premium">
-                    <div class="price-tier">👑 숲 플랜</div>
-                    <div class="price-amount">5,000원 / 월</div>
-                    <p style="color: var(--text-light); font-size: 14px;">하루 10개 이상 무제한</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 제휴 문의 섹션 -->
-        <section class="contact-section">
-            <h2>🤝 제휴 문의</h2>
-            <form action="https://formspree.io/f/mwvnrwzp" method="POST" class="contact-form">
-                <label for="name">이름:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">이메일:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">문의 내용:</label>
-                <textarea id="message" name="message" required></textarea>
-                
-                <button type="submit">문의하기</button>
-            </form>
-        </section>
-
-        <!-- 동물상 테스트 링크 섹션 -->
-        <section class="animal-test-link-section">
-            <h2>🐶🐱 동물상 테스트 해보기!</h2>
-            <p style="color: #e65100;">지금 바로 당신의 동물상을 확인해보세요!</p>
-            <a href="animal_test.html" class="animal-test-btn">테스트 시작하기 🚀</a>
-        </section>
-
+        <footer>
+            <p>© 2026 로또 번호 생성기 (연습용 도구)</p>
+            <p>
+                <a href="#">사이트 소개</a> ·
+                <a href="#">개인정보처리방침</a>
+            </p>
+        </footer>
     </div>
 
-    <div class="container">
-        <div id="disqus_thread"></div>
-    </div>
-    <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-        /*
-        var disqus_config = function () {
-        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        */
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://test2-iiy4ib53xg.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 나만의 명언록. All rights reserved.</p>
-            <nav class="footer-nav">
-                <ul>
-                    <li><a href="#">소개</a></li>
-                    <li><a href="#">개인정보처리방침</a></li>
-                </ul>
-            </nav>
-        </div>
-    </footer>
+    <script src="main.js"></script>
 </body>
 </html>

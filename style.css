@@ -1,0 +1,213 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #e94560;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.7;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Header & Subtitle */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Tool Section (Generator) */
+.tool-section {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    margin-bottom: 40px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.tool-section h2 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.tool-section p {
+    margin-bottom: 30px;
+    color: var(--text-muted);
+}
+
+.numbers-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    min-height: 60px;
+}
+
+.number-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.number-circle.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Lotto Ball Colors */
+.ball-range-1 { background: #fbc531; } /* Yellow */
+.ball-range-2 { background: #487eb0; } /* Blue */
+.ball-range-3 { background: #e84118; } /* Red */
+.ball-range-4 { background: #9c88ff; } /* Purple */
+.ball-range-5 { background: #4cd137; } /* Green */
+
+.generate-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+}
+
+.generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
+}
+
+.generate-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Content Section (SEO/Info) */
+.content-section {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+}
+
+.content-section h2 {
+    font-size: 1.5rem;
+    margin: 30px 0 15px;
+    color: var(--primary-color);
+    border-left: 5px solid var(--accent-color);
+    padding-left: 15px;
+}
+
+.content-section h2:first-of-type {
+    margin-top: 0;
+}
+
+.content-section p {
+    margin-bottom: 15px;
+}
+
+.content-section ul {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+.content-section li {
+    margin-bottom: 10px;
+}
+
+/* Ad Section Placeholder */
+.ad-section {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.ad-wrapper {
+    background: #eee;
+    padding: 20px;
+    border-radius: 10px;
+    color: #999;
+    font-size: 0.9rem;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .tool-section, .content-section {
+        padding: 25px;
+    }
+    
+    h1 { font-size: 2rem; }
+    
+    .number-circle {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
